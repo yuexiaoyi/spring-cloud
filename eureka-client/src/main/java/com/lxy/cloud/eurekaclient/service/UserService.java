@@ -3,10 +3,7 @@ package com.lxy.cloud.eurekaclient.service;
 import com.lxy.cloud.eurekaclient.mapper.UserMapper;
 import com.lxy.cloud.eurekaclient.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author lxy
@@ -23,7 +20,12 @@ public class UserService {
     }
 
     @RequestMapping(value ="user",method = RequestMethod.POST)
-    public int add(UserVO vo){
+    public int add(@RequestBody UserVO vo){
         return userMapper.insert(vo);
+    }
+
+    @RequestMapping(value = "testError")
+    public void testExcp(){
+        throw new RuntimeException("测试异常信息！");
     }
 }
