@@ -8,3 +8,12 @@ eureka:
       defaultZone: http://localhost:1111/eureka
 server:
   port: 1113
+
+management:
+  endpoint:
+    health:
+      show-details: always    #允许显示/actuator/health信息
+  endpoints:
+    web:
+      exposure:
+        include: "*"

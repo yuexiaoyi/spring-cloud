@@ -1,8 +1,9 @@
 package com.lxy.cloud.ribbonconsumer.controller;
 
+import com.lxy.cloud.ribbonconsumer.service.UserService;
+import com.lxy.cloud.ribbonconsumer.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 /**
  * @author lxy
@@ -12,16 +13,21 @@ import org.springframework.web.client.RestTemplate;
 public class ConsumerController {
 
     @Autowired
-    RestTemplate restTemplate;
+    UserService userService;
 
     @RequestMapping(value = "/ribbon-consumer", method = RequestMethod.GET)
     public String helloConsumer() {
-        return restTemplate.getForObject("http://USER-SERVICE/hello", String.class);
+        return userService.helloConsumer();
     }
 
     @RequestMapping(value = "/consumer/user/{id}", method = RequestMethod.GET)
-    public String findUserById(@PathVariable long id) {
-        return restTemplate.getForObject("http://USER-SERVICE/user/{id}", String.class, id);
+    public UserVO findUserById(@PathVariable long id) {
+        return userService.findUserById(id);
+    }
+
+    @RequestMapping(value = "/consumer/user", method = RequestMethod.POST)
+    public int insertUser(@RequestBody UserVO user){
+        return userService.insertUser(user);
     }
 
 }
