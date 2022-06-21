@@ -22,7 +22,7 @@
 
     <properties>
         <version.druid>1.1.10</version.druid>
-        <version.mysql-connector-java>8.0.16</version.mysql-connector-java>
+        <version.mysql-connector-java>8.0.28</version.mysql-connector-java>
         <version.mybatis-plus>3.0.7.1</version.mybatis-plus>
         <version.mybatis-plus-boot-starter>3.1.0</version.mybatis-plus-boot-starter>
     </properties>
